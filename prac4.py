@@ -107,3 +107,19 @@ GPIO.add_event_detect(reset,	GPIO.RISING,	callback=resetcallback,	bouncetime=200
 GPIO.add_event_detect(freq,	GPIO.RISING,	callback=freqcallback, bouncetime=200)
 GPIO.add_event_detect(stop,	GPIO.RISING,	callback=stopcallback, bouncetime=200)
 GPIO.add_event_detect(display,	GPIO.RISING,	callback=displaycallback, bouncetime=200)
+
+#Display on/off variable
+monitor=1
+
+#Default display frequency
+delay=0.5
+
+#variable of initial start time, used for timer
+starttime=time.time()
+
+#variable to limit readings shown in display function
+logcount=0
+
+#define log and log 5(for display) as a global string
+log=""
+log5=""
