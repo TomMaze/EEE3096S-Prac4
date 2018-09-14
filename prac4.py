@@ -66,4 +66,66 @@ def ConvertLight(data, places):
 	light=round(light,places)
 	return light
 
+<<<<<<< HEAD
+>>>>>>> Tom
+=======
+
+#reset callback function definition
+def resetcallback(channel):
+	global starttime
+	global log5
+	global logcount
+	starttime=time.time()
+	log5=""
+	logcount=0
+
+#frequency callback function definition
+def freqcallback(channel):
+	global delay
+	if (delay==0.5):
+		delay=1
+	elif (delay==1):
+		delay=2
+	elif (delay==2):
+		delay=0.5
+
+#stop callbaack function def
+def stopcallback(channel): 
+	global monitor
+	global logcount
+	if (monitor==1):
+		monitor=0
+	elif (monitor==0):
+		monitor=1
+		logcount=0
+
+#display callback function def
+def displaycallback(channel):
+	global monitor
+	global log5
+	if (monitor==0):
+		print("Time     Timer    Pot  Temp   Light")
+		print(log5)
+    
+#Under a rising edge, the callback function is called 
+GPIO.add_event_detect(reset,	GPIO.RISING,	callback=resetcallback,	bouncetime=200)
+GPIO.add_event_detect(freq,	GPIO.RISING,	callback=freqcallback, bouncetime=200)
+GPIO.add_event_detect(stop,	GPIO.RISING,	callback=stopcallback, bouncetime=200)
+GPIO.add_event_detect(display,	GPIO.RISING,	callback=displaycallback, bouncetime=200)
+
+#Display on/off variable
+monitor=1
+
+#Default display frequency
+delay=0.5
+
+#variable of initial start time, used for timer
+starttime=time.time()
+
+#variable to limit readings shown in display function
+logcount=0
+
+#define log and log 5(for display) as a global string
+log=""
+log5=""
 >>>>>>> Tom
