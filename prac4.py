@@ -30,7 +30,10 @@ light_channel = 0
 temp_channel  = 1
 pot_channel= 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> Shai
 
 	
 # Function to read SPI data from MCP3008 chip
@@ -67,8 +70,11 @@ def ConvertLight(data, places):
 	return light
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Tom
 =======
+=======
+>>>>>>> Shai
 
 #reset callback function definition
 def resetcallback(channel):
@@ -128,4 +134,36 @@ logcount=0
 #define log and log 5(for display) as a global string
 log=""
 log5=""
+<<<<<<< HEAD
 >>>>>>> Tom
+=======
+
+while True: 
+
+  # Read the light sensor data
+  light_level = ReadChannel(light_channel)
+  light = ConvertLight(light_level,2)
+ 
+  # Read the temperature sensor data
+  temp_level = ReadChannel(temp_channel)
+  temp = ConvertTemp(temp_level,2)
+ 
+  #Reas the potentiometer data 
+  pot_level=ReadChannel(pot_channel)
+  pot_volts=ConvertVolts(pot_level,2)
+
+  #create string for displaying at this time instance
+  log=TimeFormat(time.time())+" " +TimeFormat(time.time()-starttime) + " "+"{}V {}C {}%".format(pot_volts, temp, light)
+  
+  #if stop has not been pressed
+  if (monitor==1):
+	  print("Time     Timer    Pot  Temp   Light")
+	  print(log)
+  #if stop has been pressed, and has less than 5 time instances in the string that display outputs
+  elif ((monitor==0)and(logcount<5)):
+	log5=log5+"\n"+log
+	logcount=logcount+1
+
+  #waits between each time instance displayed on monitor. waits for a time delay set by frequency 
+  time.sleep(delay)
+>>>>>>> Shai
